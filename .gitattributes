@@ -1,8 +1,11 @@
-# تجاهل ملفات C++ ومجلدات المنصات عند إحصاء لغات المشروع
-windows/* linguist-vendored
-linux/* linguist-vendored
-ios/* linguist-vendored
-android/* linguist-vendored
-*.cpp linguist-vendored
-*.h linguist-vendored
-*.cc linguist-vendored
+# تجاهل كافة ملفات المنصات المختلفة
+android/** linguist-vendored
+ios/** linguist-vendored
+windows/** linguist-vendored
+linux/** linguist-vendored
+macos/** linguist-vendored
+web/** linguist-vendored
+
+# تجاهل ملفات CMake وامتدادات البناء الأخرى
+*.cmake linguist-vendored
+CMakeLists.txt linguist-vendored
