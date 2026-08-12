@@ -82,6 +82,12 @@ flutter:
     - family: Pacifico
       fonts:
         - asset: assets/fonts/Pacifico-Regular.ttf
+    - family: Poppins-bold
+      fonts:
+        - asset: assets/fonts/Poppins-Bold.ttf
+    - family: Prime
+      fonts:
+        - asset: assets/fonts/Prime-Regular.otf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

@@ -1,4 +1,4 @@
-import 'package:chatappx/views/Sign_up_view.dart';
+import 'package:chatappx/views/Sign_in_view.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -17,7 +17,7 @@ class ChatApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SignUpView()
+      home: SignInView()
     );
   }
 }

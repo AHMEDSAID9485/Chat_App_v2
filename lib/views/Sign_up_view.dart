@@ -129,16 +129,21 @@ class _SignUpViewState extends State<SignUpView> {
                       fontSize: 35,
                     ),
                   ),
-                  const SizedBox(height: 30),
+                  Text(
+                    'Welcome🤝',
+                    style: TextStyle(
+                      color: AppColor.five_color,
+                      fontFamily: 'Prime',
+                      fontSize: 30,
+                    ),
+                  ),
+                  const Gap(30),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
                         'Sign Up',
-                        style: TextStyle(
-                          color: AppColor.sco_color,
-                          fontSize: 20,
-                        ),
+                       style: TextStyle(color: AppColor.five_color, fontSize: 30,fontFamily: 'Prime'),
                       ),
                     ],
                   ),
@@ -198,7 +203,7 @@ class _SignUpViewState extends State<SignUpView> {
                         child: Text(
                           ' Sign In',
                           style: TextStyle(
-                            color: AppColor.third_color,
+                            color: AppColor.five_color,
                             fontSize: 18,
                           ),
                         ),

@@ -113,35 +113,43 @@ bool isLoading = false;
                       fontSize: 35,
                     ),
                   ),
-                  SizedBox(height: 30),
+                  Text(
+                    'Welcome back👋',
+                    style: TextStyle(
+                      color: AppColor.five_color,
+                      fontFamily: 'Prime',
+                      fontSize: 30,
+                    ),
+                  ),
+                  Gap(30),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
                         'Sign In',
-                        style: TextStyle(color: AppColor.sco_color, fontSize: 20),
+                        style: TextStyle(color: AppColor.five_color, fontSize: 30,fontFamily: 'Prime'),
                       ),
                     ],
                   ),
-                  Gap(10),
+                 const Gap(10),
                   CustomTextForm(
                     hint: 'Email',
                     autofillHints: [AutofillHints.email],
                     controller: emailController,
                     keyboardType: TextInputType.emailAddress,
                   ),
-                  Gap(10),
+                 const Gap(10),
                   CustomTextForm(
                     hint: 'Password',
                     controller: passwordController,
                     isPassword: true,
                   ),
-                  Gap(10),
+                 const Gap(10),
                   CustoumButtom(
                     hint: 'Sign In',
                     onTap: _signInUser
                   ),
-                  Gap(10),
+                 const Gap(10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -159,7 +167,7 @@ bool isLoading = false;
                         child: Text(
                           ' Sign Up',
                           style: TextStyle(
-                            color: AppColor.third_color,
+                            color: AppColor.five_color,
                             fontSize: 18,
                           ),
                         ),

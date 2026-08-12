@@ -1,5 +1,7 @@
 import 'package:chatappx/const/App_color.dart';
+import 'package:chatappx/widgets/CustomChatBubbleWidget.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class ChatView extends StatelessWidget {
   const ChatView({super.key});
@@ -12,30 +14,51 @@ class ChatView extends StatelessWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/images/scholar.png',height: 55,),
-            Text('Chat',style: TextStyle(color: AppColor.sco_color,fontSize: 25),)
-     
+            Image.asset('assets/images/scholar.png', height: 55),
+            Text(
+              'Chat',
+              style: TextStyle(color: AppColor.sco_color, fontSize: 25),
+            ),
           ],
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: Column(
           children: [
-            Container(
-              height: 70,
-              width: 200,
-              
-              decoration: BoxDecoration(
-                color: AppColor.prim_color,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
-                ),
-                
+            Expanded(
+              child: ListView.separated(
+                scrollDirection: Axis.vertical,
+                separatorBuilder: (context, index) => Gap(10),
+                itemBuilder: (context, index) => CustomChatBubbleWidget(),
+                itemCount: 10,
+                shrinkWrap: false,
               ),
-            )
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: TextFormField(
+                cursorColor: AppColor.prim_color,
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(
+                      width: 2,
+                      color: AppColor.prim_color,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(
+                      width: 2,
+                      color: AppColor.prim_color,
+                    ),
+                  ),
+                  hintText: 'Send Message',
+                  suffixIcon: Icon(Icons.send, color: AppColor.prim_color),
+                ),
+              ),
+            ),
           ],
         ),
       ),
