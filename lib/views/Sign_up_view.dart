@@ -1,5 +1,6 @@
 import 'package:chatappx/const/App_color.dart';
 import 'package:chatappx/helper/show_snack_bar.dart';
+import 'package:chatappx/views/Sign_in_view.dart';
 import 'package:chatappx/widgets/CustomTextFormWidget.dart';
 import 'package:chatappx/widgets/CustoumButtom.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -38,9 +39,8 @@ class _SignUpViewState extends State<SignUpView> {
 
   Future<void> _registerUser() async {
     // 1. التحقق من صحة المدخلات أولاً قبل تفعيل الـ Loading
-    if (!formKey.currentState!.validate()) return;
-
-    // إخفاء لوحة المفاتيح عند البدء
+    if (formKey.currentState!.validate())  {
+       // إخفاء لوحة المفاتيح عند البدء
     FocusScope.of(context).unfocus();
 
     setState(() {
@@ -93,6 +93,9 @@ class _SignUpViewState extends State<SignUpView> {
       }
     }
   }
+    }
+
+   
 
   @override
   Widget build(BuildContext context) {
@@ -182,7 +185,7 @@ class _SignUpViewState extends State<SignUpView> {
                       ),
                       GestureDetector(
                         onTap: () {
-                        
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SignInView())); // استخدمنا اسم المسار بدلاً من إنشاء MaterialPageRoute جديد
                         },
                         child: Text(
                           ' Sign In',
