@@ -1,6 +1,5 @@
 import 'package:chatappx/const/App_color.dart';
 import 'package:chatappx/helper/show_snack_bar.dart';
-import 'package:chatappx/views/Sign_in_view.dart';
 import 'package:chatappx/widgets/CustomTextFormWidget.dart';
 import 'package:chatappx/widgets/CustoumButtom.dart';
 import 'package:firebase_auth/firebase_auth.dart';
