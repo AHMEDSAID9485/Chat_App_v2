@@ -1,5 +1,6 @@
 import 'package:chatappx/const/App_color.dart';
 import 'package:chatappx/helper/show_snack_bar.dart';
+import 'package:chatappx/views/Chat_view.dart';
 import 'package:chatappx/views/Sign_in_view.dart';
 import 'package:chatappx/widgets/CustomTextFormWidget.dart';
 import 'package:chatappx/widgets/CustoumButtom.dart';
@@ -59,6 +60,13 @@ class _SignUpViewState extends State<SignUpView> {
         context: context,
         text: 'Registered successfully!',
       );
+      Future.delayed(const Duration(seconds: 4), () {
+        if (!mounted) return; // حماية الاستدعاء بعد الـ Async
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => ChatView()),
+        );
+      });
     } on FirebaseAuthException catch (e) {
       if (!mounted) return;
 
