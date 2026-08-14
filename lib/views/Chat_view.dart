@@ -1,11 +1,14 @@
 import 'package:chatappx/const/App_color.dart';
+import 'package:chatappx/models/messege_model.dart';
 import 'package:chatappx/widgets/CustomChatBubbleWidget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 class ChatView extends StatelessWidget {
-  const ChatView({super.key});
-
+   ChatView({super.key});
+  CollectionReference users = FirebaseFirestore.instance.collection('Messages');
+  TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +25,18 @@ class ChatView extends StatelessWidget {
           ],
         ),
       ),
-      body: Padding(
+      body: StreamBuilder(
+      stream: users.orderBy('timestamp').snapshots(),
+      builder: ( context,snapshot){
+        List<MessegeModel> messges = [];
+         if(snapshot.hasData){
+         for(int i = 0 ; i < snapshot.data!.docs.length ; i++){
+          messges.add(MessegeModel(
+            messege: snapshot.data!.docs[i]['messege'],
+            timestamp: (snapshot.data!.docs[i]['timestamp'] as Timestamp).toDate(),
+          ));
+         }
+          return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: Column(
           children: [
@@ -30,14 +44,15 @@ class ChatView extends StatelessWidget {
               child: ListView.separated(
                 scrollDirection: Axis.vertical,
                 separatorBuilder: (context, index) => Gap(10),
-                itemBuilder: (context, index) => CustomChatBubbleWidget(),
-                itemCount: 10,
+                itemBuilder: (context, index) => CustomChatBubbleWidget(messege: messges[index].messege,),
+                itemCount: messges.length,
                 shrinkWrap: false,
               ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: TextFormField(
+                controller: controller,
                 cursorColor: AppColor.prim_color,
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
@@ -55,13 +70,25 @@ class ChatView extends StatelessWidget {
                     ),
                   ),
                   hintText: 'Send Message',
-                  suffixIcon: Icon(Icons.send, color: AppColor.prim_color),
+                  suffixIcon: GestureDetector(
+                    onTap: () {
+                      if(controller.text != null&&controller.text !=''){
+                        users.add({'messege':controller.text,'timestamp':DateTime.now()});
+                      }
+                      controller.clear();
+                      FocusScope.of(context).unfocus();
+                    },
+                    child: Icon(Icons.send, color: AppColor.prim_color)),
                 ),
               ),
             ),
           ],
         ),
-      ),
+      );
+         }else{
+          return Center(child: CircularProgressIndicator(color: AppColor.prim_color,));
+         }
+      }),
     );
   }
 }

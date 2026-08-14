@@ -2,8 +2,8 @@ import 'package:chatappx/const/App_color.dart';
 import 'package:flutter/material.dart';
 
 class CustomChatBubbleWidget extends StatelessWidget {
-  const CustomChatBubbleWidget({super.key});
-
+  const CustomChatBubbleWidget({super.key, required this.messege});
+final String messege;
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -19,7 +19,7 @@ class CustomChatBubbleWidget extends StatelessWidget {
           ),
         ),
         child: Text(
-          'I am new user',
+          messege,
           style: TextStyle(color: AppColor.sco_color),
         ),
       ),

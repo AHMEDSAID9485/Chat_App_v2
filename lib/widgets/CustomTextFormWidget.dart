@@ -30,6 +30,7 @@ class _CustomTextFormState extends State<CustomTextForm> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      cursorColor: AppColor.prim_color,
       autofillHints: widget.autofillHints,
       keyboardType: widget.keyboardType,
       controller: widget.controller,
