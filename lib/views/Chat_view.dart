@@ -11,6 +11,7 @@ class ChatView extends StatelessWidget {
    final String email;
  final CollectionReference users = FirebaseFirestore.instance.collection('Messages');
  final TextEditingController controller = TextEditingController();
+ final ScrollController scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +47,7 @@ class ChatView extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.separated(
+                controller: scrollController,
                 scrollDirection: Axis.vertical,
                 separatorBuilder: (context, index) => Gap(10),
                 itemBuilder: (context, index) => messges[index].id == email
@@ -81,8 +83,14 @@ class ChatView extends StatelessWidget {
                       if(controller.text.isNotEmpty && controller.text !=''){
                         users.add({'messege':controller.text,'timestamp':DateTime.now(), 'id':email});
                       }
-                       controller.clear();                    
-                      // FocusScope.of(context).unfocus();
+                       controller.clear(); 
+                       FocusScope.of(context).unfocus();                  
+                      scrollController.animateTo(
+                        scrollController.position.maxScrollExtent,
+                        duration: Duration(milliseconds: 300),
+                        curve: Curves.easeOut,
+                      );
+                      
                     },
                     child: Icon(Icons.send, color: AppColor.prim_color)),
                 ),
