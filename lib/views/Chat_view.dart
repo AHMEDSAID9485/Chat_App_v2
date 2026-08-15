@@ -30,7 +30,7 @@ class ChatView extends StatelessWidget {
         ),
       ),
       body: StreamBuilder(
-      stream: users.orderBy('timestamp').snapshots(),
+      stream: users.orderBy('timestamp', descending: true).snapshots(),
       builder: ( context,snapshot){
         List<MessegeModel> messges = [];
          if(snapshot.hasData){
@@ -47,6 +47,7 @@ class ChatView extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.separated(
+                reverse: true,
                 controller: scrollController,
                 scrollDirection: Axis.vertical,
                 separatorBuilder: (context, index) => Gap(10),
@@ -86,7 +87,7 @@ class ChatView extends StatelessWidget {
                        controller.clear(); 
                        FocusScope.of(context).unfocus();                  
                       scrollController.animateTo(
-                        scrollController.position.maxScrollExtent,
+                        0,
                         duration: Duration(milliseconds: 300),
                         curve: Curves.easeOut,
                       );
