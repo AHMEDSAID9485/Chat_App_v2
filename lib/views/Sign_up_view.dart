@@ -60,11 +60,11 @@ class _SignUpViewState extends State<SignUpView> {
         context: context,
         text: 'Registered successfully!',
       );
-      Future.delayed(const Duration(seconds: 4), () {
+      Future.delayed(const Duration(seconds: 2), () {
         if (!mounted) return; // حماية الاستدعاء بعد الـ Async
-        Navigator.pushReplacement(
+        Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ChatView()),
+          MaterialPageRoute(builder: (context) => ChatView(email: emailController.text.trim(),)),
         );
       });
     } on FirebaseAuthException catch (e) {

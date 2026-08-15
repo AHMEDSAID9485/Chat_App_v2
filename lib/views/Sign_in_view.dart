@@ -54,15 +54,15 @@ bool isLoading = false;
         text: 'Logged in successfully!',
         color: AppColor.third_color,
       );
-       Future.delayed(const Duration(seconds: 4), () {
+       Future.delayed(const Duration(seconds: 2), () {
         if (!mounted) return; // حماية الاستدعاء بعد الـ Async
-        Navigator.pushReplacement(
+        Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ChatView()),
+          MaterialPageRoute(builder: (context) => ChatView(email: emailController.text.trim(),)),
         );
       });
     }  on FirebaseAuthException catch (e) {
-      if (!mounted) return;
+        if (!mounted) return;
 
       String errorMessage = 'An error occurred. Please try again.';
       if (e.code == 'wrong-password') {
